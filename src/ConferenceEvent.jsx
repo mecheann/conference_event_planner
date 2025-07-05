@@ -79,7 +79,32 @@ const ConferenceEvent = () => {
     const items = getItemsFromTotalCost();
 
     const ItemsDisplay = ({ items }) => {
-
+        console.log(items);
+        return <>
+            <div className="display_box1">
+                {items.length === 0 && <p>No items selected</p>}
+                <table className="table_item_data">
+                    <thead>
+                        <tr>
+                            <th>Nme</th>
+                            <th>Unit Cost</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {items.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.className}</td>
+                                <td>{item.cost}</td>
+                                <td>{item.type === "meals" || item.numberOfPeople ? `For ${numberOfPeople}` : item.quantity}</td>
+                                <td>{item.type === "meals" || item.numberOfPeople ? `${item.cost * numberOfPeople}` : `${item.cost * item.quantity}`}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     };
     const calculateTotalCost = (section) => {
         let totalCost = 0;
