@@ -42,7 +42,7 @@ const ConferenceEvent = () => {
     };
 
     const handleMealSelection = (index) => {
-        const item = mealsItems[index];
+        const item = mealItems[index];
         if (item.selected && item.type === "mealForPeople") {
             const newNumberOfPeople = item.selected ? numberOfPeople : 0;
             dispatch(toggleMealSelection(index, newNumberOfPeople));
@@ -59,7 +59,7 @@ const ConferenceEvent = () => {
         });
 
         avItems.forEach((item) => {
-            if (item.quantity > 0 && !item.some((i) => i.name === item.name && i.type === "av")) {
+            if (item.quantity > 0 && !items.some((i) => i.name === item.name && i.type === "av")) {
                 items.push({ ...item, type: "av" });
             }
         });
